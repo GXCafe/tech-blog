@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Fine-Tuning LLM Models for Zero-API-Cost Autonomous Business Operations</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preload" as="style" href="../assets/built/screen.css%3Fv=526a2d987e.css">
+    <link rel="preload" as="script" href="../assets/built/source.js%3Fv=526a2d987e">
+    
+    <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/inter-roman.woff2%3Fv=526a2d987e" crossorigin="anonymous">
+<style>
+    @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: optional;
+        src: url(../assets/fonts/inter-roman.woff2%3Fv=526a2d987e) format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+</style>
+
+    <link rel="stylesheet" type="text/css" href="../assets/built/screen.css%3Fv=526a2d987e.css">
+
+    <style>
+        :root {
+            --background-color: #ffffff
+        }
+    </style>
+
+    <script>
+        /* The script for calculating the color contrast has been taken from
+        https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/ */
+        var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--background-color');
+        accentColor = accentColor.trim().slice(1);
+
+        if (accentColor.length === 3) {
+            accentColor = accentColor[0] + accentColor[0] + accentColor[1] + accentColor[1] + accentColor[2] + accentColor[2];
+        }
+
+        var r = parseInt(accentColor.substr(0, 2), 16);
+        var g = parseInt(accentColor.substr(2, 2), 16);
+        var b = parseInt(accentColor.substr(4, 2), 16);
+        var yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        var textColor = (yiq >= 128) ? 'dark' : 'light';
+
+        document.documentElement.className = `has-${textColor}-text`;
+    </script>
+
+    <meta name="description" content="Running autonomous business operations with local Large Language Model (LLM) agents can significantly reduce costs and increase operational efficiency. However, setting up such a system requires careful planning and execution, from selecting the right model to optimizing infrastr">
+    <link rel="canonical" href="http://localhost:2368/fine-tuning-llm-models-for-zero-api-cost-autonomous-business-operations/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="GXCafe Publishing (dev)">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Fine-Tuning LLM Models for Zero-API-Cost Autonomous Business Operations">
+    <meta property="og:description" content="Running autonomous business operations with local Large Language Model (LLM) agents can significantly reduce costs and increase operational efficiency. However, setting up such a system requires careful planning and execution, from selecting the right model to optimizing infrastr">
+    <meta property="og:url" content="http://localhost:2368/fine-tuning-llm-models-for-zero-api-cost-autonomous-business-operations/">
+    <meta property="og:image" content="https://static.ghost.org/v5.0.0/images/publication-cover.jpg">
+    <meta property="article:published_time" content="2026-07-11T09:56:16.000Z">
+    <meta property="article:modified_time" content="2026-07-11T09:56:16.000Z">
+    <meta property="article:tag" content="local-llm">
+    <meta property="article:tag" content="ai-agents">
+    <meta property="article:tag" content="ollama">
+    <meta property="article:tag" content="build-in-public">
+    <meta property="article:tag" content="local-llm-ops">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/ghost">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fine-Tuning LLM Models for Zero-API-Cost Autonomous Business Operations">
+    <meta name="twitter:description" content="Running autonomous business operations with local Large Language Model (LLM) agents can significantly reduce costs and increase operational efficiency. However, setting up such a system requires careful planning and execution, from selecting the right model to optimizing infrastr">
+    <meta name="twitter:url" content="http://localhost:2368/fine-tuning-llm-models-for-zero-api-cost-autonomous-business-operations/">
+    <meta name="twitter:image" content="https://static.ghost.org/v5.0.0/images/publication-cover.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Kengo Seki">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="local-llm, ai-agents, ollama, build-in-public, local-llm-ops">
+    <meta name="twitter:site" content="@ghost">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="840">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "GXCafe Publishing (dev)",
+        "url": "http://localhost:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 48,
+            "height": 48
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Kengo Seki",
+        "url": "http://localhost:2368/author/kengo/",
+        "sameAs": []
+    },
+    "headline": "Fine-Tuning LLM Models for Zero-API-Cost Autonomous Business Operations",
+    "url": "http://localhost:2368/fine-tuning-llm-models-for-zero-api-cost-autonomous-business-operations/",
+    "datePublished": "2026-07-11T09:56:16.000Z",
+    "dateModified": "2026-07-11T09:56:16.000Z",
+    "keywords": "local-llm, ai-agents, ollama, build-in-public, local-llm-ops",
+    "description": "Running autonomous business operations with local Large Language Model (LLM) agents can significantly reduce costs and increase operational efficiency. However, setting up such a system requires careful planning and execution, from selecting the right model to optimizing infrastr",
+    "mainEntityOfPage": "http://localhost:2368/fine-tuning-llm-models-for-zero-api-cost-autonomous-business-operations/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 6.44">
+    <link rel="alternate" type="application/rss+xml" title="GXCafe Publishing (dev)" href="http://localhost:2368/rss/">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.68/umd/portal.min.js" data-i18n="true" data-ghost="http://localhost:2368/" data-key="738bf6d0ed841abfeaf9178742" data-api="http://localhost:2368/ghost/api/content/" data-locale="en" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js" data-key="738bf6d0ed841abfeaf9178742" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css" data-sodo-search="http://localhost:2368/" data-locale="en" crossorigin="anonymous"></script>
+    
+    <link href="http://localhost:2368/webmentions/receive/" rel="webmention">
+    <script defer src="../public/cards.min.js%3Fv=526a2d987e"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css%3Fv=526a2d987e.css">
+    <script defer src="../public/comment-counts.min.js%3Fv=526a2d987e" data-ghost-comments-counts-api="http://localhost:2368/members/api/comments/counts/"></script>
+    <script defer src="../public/member-attribution.min.js%3Fv=526a2d987e"></script><style>:root {--ghost-accent-color: #FF1A75;}</style>
+
+</head>
+<body class="post-template tag-local-llm tag-ai-agents tag-ollama-2 tag-build-in-public tag-local-llm-ops has-sans-title has-sans-body">
+
+<div class="gh-viewport">
+    
+    <header id="gh-navigation" class="gh-navigation is-middle-logo gh-outer">
+    <div class="gh-navigation-inner gh-inner">
+
+        <div class="gh-navigation-brand">
+            <a class="gh-navigation-logo is-title" href="http://localhost:2368">
+                    GXCafe Publishing (dev)
+            </a>
+            <button class="gh-search gh-icon-button" aria-label="Search this site" data-ghost-search>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>            <button class="gh-burger gh-icon-button" aria-label="Menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path></svg>                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path></svg>            </button>
+        </div>
+
+        <nav class="gh-navigation-menu">
+            <ul class="nav">
+    <li class="nav-home"><a href="http://localhost:2368/">Home</a></li>
+    <li class="nav-about"><a href="http://localhost:2368/about/">About</a></li>
+</ul>
+
+        </nav>
+
+        <div class="gh-navigation-actions">
+                <button class="gh-search gh-icon-button" aria-label="Search this site" data-ghost-search>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>                <div class="gh-navigation-members">
+                            <a href="index.html#/portal/signin" data-portal="signin">Sign in</a>
+                                <a class="gh-button" href="index.html#/portal/signup" data-portal="signup">Subscribe</a>
+                </div>
+        </div>
+
+    </div>
+</header>
+
+    
+
+<main class="gh-main">
+
+    <article class="gh-article post tag-local-llm tag-ai-agents tag-ollama-2 tag-build-in-public tag-local-llm-ops no-image">
+
+        <header class="gh-article-header gh-canvas">
+
+                <a class="gh-article-tag" href="http://localhost:2368/tag/local-llm/">local-llm</a>
+            <h1 class="gh-article-title is-title">Fine-Tuning LLM Models for Zero-API-Cost Autonomous Business Operations</h1>
+                <p class="gh-article-excerpt is-body">Running autonomous business operations with local Large Language Model (LLM) agents can significantly reduce costs and increase operational efficiency. However, setting up such a system requires careful planning and execution, from selecting the right model to optimizing infrastr</p>
+
+                <div class="gh-meta-share">
+                    <div class="gh-article-meta">
+                        <div class="gh-article-author-image instapaper_ignore">
+                                    <a href="../author/kengo/index.html"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M3.513 18.998C4.749 15.504 8.082 13 12 13s7.251 2.504 8.487 5.998C18.47 21.442 15.417 23 12 23s-6.47-1.558-8.487-4.002zM12 12c2.21 0 4-2.79 4-5s-1.79-4-4-4-4 1.79-4 4 1.79 5 4 5z" fill="#FFF"/></g></svg>
+</a>
+                        </div>
+                        <div class="gh-article-meta-wrapper">
+                            <h4 class="gh-article-author-name"><a href="../author/kengo/index.html">Kengo Seki</a></h4>
+                            <div class="gh-article-meta-content">
+                                <time class="gh-article-meta-date" datetime="2026-07-11">11 Jul 2026</time>
+                                    <span class="gh-article-meta-length"><span class="bull">—</span> 3 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="index.html#/share" class="gh-button gh-button-share">
+                        Share
+                    </a>
+                </div>
+
+            
+        </header>
+
+        <section class="gh-content gh-canvas is-body">
+            <h2 id="introduction-to-running-autonomous-ai-agents-locally-without-api-costs">Introduction to Running Autonomous AI Agents Locally Without API Costs</h2><p>Running autonomous business operations with local Large Language Model (LLM) agents can significantly reduce costs and increase operational efficiency. However, setting up such a system requires careful planning and execution, from selecting the right model to optimizing infrastructure for 24/7 operation.</p><h2 id="model-selection-and-performance-the-case-study-of-switching-from-llama318b-to-qwen2514b-instruct">Model Selection and Performance: The Case Study of Switching from llama3.1:8b to qwen2.5:14b-instruct</h2><p>Choosing the appropriate LLM is crucial for achieving high-quality autonomous operations. Our team encountered a significant challenge when we noticed that the Japanese writing produced by our initial model, llama3.1:8b, was subpar in terms of grammatical correctness and contextual relevance. This necessitated switching to qwen2.5:14b-instruct, which offered superior performance for all language tasks, especially in Japanese.</p><p>The transition from one model to another involved a thorough evaluation process. The original model, llama3.1:8b, was chosen primarily due to its size and computational efficiency, but it fell short on specialized language tasks. After extensive testing with qwen2.5:14b-instruct, we found that this newer model not only excelled in Japanese writing but also handled other languages more robustly.</p><h2 id="optimizing-system-prompts-and-reducing-context-overflow-issues">Optimizing System Prompts and Reducing Context Overflow Issues</h2><p>One of the key challenges encountered during our transition was managing context overflow issues within system prompts. Initially, the system prompts were excessively long, with each prompt carrying around 100k tokens. This caused significant performance degradation and frequent errors when agents attempted to execute tasks.</p><p>To address this issue, we revised the tools.profile settings to a minimal configuration, cutting down the system prompts to approximately 9.6k tokens. Additionally, we identified that injecting large amounts of workspace files (AGENTS.md/MEMORY.md) into each call was causing context overflow on a 16k token window. By switching to raw inference with the role embedded in the prompt, we were able to mitigate these issues effectively.</p><h2 id="building-a-zero-api-cost-autonomous-delivery-pipeline-with-local-llms">Building a Zero-API-Cost Autonomous Delivery Pipeline with Local LLMs</h2><p>Our autonomous delivery pipeline is designed to ensure that all operations are handled locally without relying on API calls, thereby eliminating costs associated with cloud-based services. The pipeline operates as follows: an initial production of content or commands by the LLM goes through an independent review phase conducted by another instance of the same model.</p><p>This review process ensures quality control and consistency across various tasks, such as sales pitches, financial reports, HR communications, marketing campaigns, and security advisories. Any necessary revisions are made in a loop until the human operator confirms final approval for the operation to proceed.</p><p>The entire pipeline is driven by a deterministic JSON ledger that manages state transitions between different stages of production, review, and execution seamlessly. This approach not only reduces operational costs but also enhances reliability and control over data integrity.</p><h2 id="implementing-continuous-integrationcontinuous-deployment-cicd-with-parallel-ai-reviewers">Implementing Continuous Integration/Continuous Deployment (CI/CD) with Parallel AI Reviewers</h2><p>To streamline the development and deployment process, we implemented a CI/CD pipeline that leverages parallel AI reviewers for code reviews and quality assurance. During the initial build phase of our autonomous delivery system, this setup allowed us to identify and fix 10 real bugs, including an important race condition issue in the JSON ledger causing duplicate publishes.</p><p>The parallel AI review process was rigorously tested through end-to-end simulations on local inference environments. This not only ensured that all components functioned correctly but also provided a robust framework for continuous improvement and scalability of our autonomous operations.</p><h2 id="managing-local-infrastructure-for-247-operation-of-autonomous-agents">Managing Local Infrastructure for 24/7 Operation of Autonomous Agents</h2><p>Ensuring the stability and reliability of our AI agents requires robust infrastructure management. To achieve this, we utilize systemd user services combined with loginctl linger to keep critical processes running continuously on the desktop system. Additionally, Windows Task Scheduler is configured to boot WSL (Windows Subsystem for Linux) upon user logon, ensuring that all necessary services are active and ready.</p><p>Furthermore, to maintain uninterrupted operation, power management settings were adjusted to disable sleep mode when connected to AC power. These measures collectively contribute to a stable environment where autonomous agents can operate without interruption 24/7.</p><h2 id="practical-takeaway">Practical Takeaway</h2><p>Running an autonomous business OS with local LLMs offers significant advantages in terms of cost reduction and operational control. By carefully selecting the right model, optimizing system prompts, building a robust delivery pipeline, implementing CI/CD processes, and managing infrastructure effectively, businesses can achieve reliable and efficient operations without relying on external API services.</p><p>Key lessons from our experience include:</p><ul><li><strong>Model Selection</strong>: Prioritize models that excel in specific language tasks.</li><li><strong>Prompt Optimization</strong>: Keep system prompts concise to avoid context overflow issues.</li><li><strong>Pipeline Design</strong>: Implement a deterministic JSON-led pipeline for state transitions.</li><li><strong>CI/CD Integration</strong>: Leverage parallel AI reviewers for efficient bug detection and resolution.</li><li><strong>Infrastructure Management</strong>: Utilize systemd services, Task Scheduler, and disable sleep mode for continuous operation.</li></ul><p>These strategies enable businesses to leverage the full potential of local LLMs while minimizing operational costs and maximizing efficiency.</p>
+        </section>
+
+    </article>
+
+        <div class="gh-comments gh-canvas">
+            
+        <script defer src="https://cdn.jsdelivr.net/ghost/comments-ui@~1.5/umd/comments-ui.min.js" data-locale="en" data-ghost-comments="http://localhost:2368/" data-api="http://localhost:2368/ghost/api/content/" data-admin="http://localhost:2368/ghost/" data-key="738bf6d0ed841abfeaf9178742" data-title="null" data-count="true" data-post-id="6a5213408d10760001b018d6" data-color-scheme="auto" data-avatar-saturation="60" data-accent-color="#FF1A75" data-comments-enabled="all" data-publication="GXCafe Publishing (dev)" crossorigin="anonymous"></script>
+    
+        </div>
+
+</main>
+
+
+            <section class="gh-container is-grid gh-outer">
+                <div class="gh-container-inner gh-inner">
+                    <h2 class="gh-container-title">Read more</h2>
+                    <div class="gh-feed">
+                            <article class="gh-card post no-image">
+    <a class="gh-card-link" href="../fine-tuning-model-selection-for-zero-api-cost-autonomous-business-operations-on-local-llms-2/index.html">
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Fine-Tuning Model Selection for Zero-API-Cost Autonomous Business Operations on Local LLMs</h3>
+                <p class="gh-card-excerpt is-body">Autonomous business operations powered by local Large Language Models (LLMs) offer businesses a cost-effective and efficient way to automate routine tasks. By leveraging powerful but affordable hardware like the Ryzen AI MAX+ 395 Strix Halo mini PC, companies can run an entire su</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By Kengo Seki</span>
+                    <time class="gh-card-date" datetime="2026-07-11">11 Jul 2026</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                            <article class="gh-card post no-image">
+    <a class="gh-card-link" href="../fine-tuning-system-prompts-for-efficient-local-llm-agent-operations/index.html">
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Fine-Tuning System Prompts for Efficient Local LLM Agent Operations</h3>
+                <p class="gh-card-excerpt is-body">Optimizing local large language model (LLM) agents is essential for maintaining efficiency in AI-driven business operations. Managing token usage within limited computational resources presents a significant challenge for engineers and founders. This article explores how adjustin</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By Kengo Seki</span>
+                    <time class="gh-card-date" datetime="2026-07-11">11 Jul 2026</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                            <article class="gh-card post no-image">
+    <a class="gh-card-link" href="../optimizing-context-management-for-autonomous-llm-business-agents/index.html">
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Optimizing Context Management for Autonomous LLM Business Agents</h3>
+                <p class="gh-card-excerpt is-body">Autonomous business agents powered by local large language models (LLMs) offer an intriguing avenue for reducing costs and enhancing control. By sidestepping API-based cloud services, businesses can deploy a wide array of agents tailored to specific tasks without incurring ongoin</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By Kengo Seki</span>
+                    <time class="gh-card-date" datetime="2026-07-11">11 Jul 2026</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                            <article class="gh-card post no-image">
+    <a class="gh-card-link" href="../fine-tuning-model-selection-for-zero-api-cost-autonomous-business-operations-on-local-llms/index.html">
+        <div class="gh-card-wrapper">
+            <h3 class="gh-card-title is-title">Fine-Tuning Model Selection for Zero-API-Cost Autonomous Business Operations on Local LLMs</h3>
+                <p class="gh-card-excerpt is-body">Autonomous AI agents represent a significant advancement in business operations by enabling seamless automation without direct human intervention. Running these agents locally with large language models (LLMs) reduces costs by eliminating API fees, presenting challenges such as m</p>
+            <footer class="gh-card-meta">
+<!--
+             -->
+                    <span class="gh-card-author">By Kengo Seki</span>
+                    <time class="gh-card-date" datetime="2026-07-11">11 Jul 2026</time>
+                <!--
+         --></footer>
+        </div>
+    </a>
+</article>
+                    </div>
+                </div>
+            </section>
+
+    
+    <footer class="gh-footer gh-outer">
+    <div class="gh-footer-inner gh-inner">
+
+                <section class="gh-footer-signup">
+                    <h2 class="gh-footer-signup-header is-title">
+                        GXCafe Publishing (dev)
+                    </h2>
+                    <p class="gh-footer-signup-subhead is-body">
+                        Thoughts, stories and ideas.
+                    </p>
+                    <form class="gh-form" data-members-form>
+    <input class="gh-form-input" id="footer-email" name="email" type="email" placeholder="jamie@example.com" required data-members-email>
+    <button class="gh-button" type="submit" aria-label="Subscribe">
+        <span><span>Subscribe</span> <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"></path></svg></span>
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
+    <g stroke-linecap="round" stroke-width="2" fill="currentColor" stroke="none" stroke-linejoin="round" class="nc-icon-wrapper">
+        <g class="nc-loop-dots-4-24-icon-o">
+            <circle cx="4" cy="12" r="3"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+            <circle cx="20" cy="12" r="3"></circle>
+        </g>
+        <style data-cap="butt">
+            .nc-loop-dots-4-24-icon-o{--animation-duration:0.8s}
+            .nc-loop-dots-4-24-icon-o *{opacity:.4;transform:scale(.75);animation:nc-loop-dots-4-anim var(--animation-duration) infinite}
+            .nc-loop-dots-4-24-icon-o :nth-child(1){transform-origin:4px 12px;animation-delay:-.3s;animation-delay:calc(var(--animation-duration)/-2.666)}
+            .nc-loop-dots-4-24-icon-o :nth-child(2){transform-origin:12px 12px;animation-delay:-.15s;animation-delay:calc(var(--animation-duration)/-5.333)}
+            .nc-loop-dots-4-24-icon-o :nth-child(3){transform-origin:20px 12px}
+            @keyframes nc-loop-dots-4-anim{0%,100%{opacity:.4;transform:scale(.75)}50%{opacity:1;transform:scale(1)}}
+        </style>
+    </g>
+</svg>        <span>Email sent</span>
+    </button>
+    <p data-members-error></p>
+</form>
+                </section>
+
+        <div class="gh-social-links">
+                <a href="https://x.com/ghost" target="_blank" rel="noopener" aria-label="X">
+<svg viewBox="0 0 24 24" fill="currentColor"><g><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></g></svg>                </a>
+                <a href="https://www.facebook.com/ghost" target="_blank" rel="noopener" aria-label="Facebook">
+<svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M23.9981 11.9991C23.9981 5.37216 18.626 0 11.9991 0C5.37216 0 0 5.37216 0 11.9991C0 17.9882 4.38789 22.9522 10.1242 23.8524V15.4676H7.07758V11.9991H10.1242V9.35553C10.1242 6.34826 11.9156 4.68714 14.6564 4.68714C15.9692 4.68714 17.3424 4.92149 17.3424 4.92149V7.87439H15.8294C14.3388 7.87439 13.8739 8.79933 13.8739 9.74824V11.9991H17.2018L16.6698 15.4676H13.8739V23.8524C19.6103 22.9522 23.9981 17.9882 23.9981 11.9991Z"/></svg>                </a>
+        </div>
+
+        <div class="gh-footer-bar">
+            <span class="gh-footer-logo is-title">
+                    GXCafe Publishing (dev)
+            </span>
+            <nav class="gh-footer-menu">
+                <ul class="nav">
+    <li class="nav-sign-up"><a href="index.html#/portal/">Sign up</a></li>
+</ul>
+
+            </nav>
+            <div class="gh-footer-copyright">
+                Powered by <a href="https://ghost.org/" target="_blank" rel="noopener">Ghost</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
+    
+</div>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/built/source.js%3Fv=526a2d987e"></script>
+
+
+
+</body>
+</html>
