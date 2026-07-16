@@ -1,0 +1,591 @@
+{
+ "generatedAt": "2026-07-16T08:13:10.242Z",
+ "summary": {
+  "openclawAgentsTotal": 97,
+  "openclawAgentsActive7d": 22
+ },
+ "openclawAgents": [
+  {
+   "id": "analytics",
+   "lastActivity": "2026-07-12T04:06:00.778Z",
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "analytics-dashboard-provider",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "analytics-kpi-collector",
+   "lastActivity": "2026-07-16T01:10:14.279Z",
+   "lastTask": "analytics/kpi_morning",
+   "lastOk": true
+  },
+  {
+   "id": "analytics-report-generator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "customer",
+   "lastActivity": "2026-06-11T09:49:10.298Z",
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "customer-auto-responder",
+   "lastActivity": "2026-06-11T09:48:42.910Z",
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "customer-escalation-manager",
+   "lastActivity": "2026-07-16T07:15:00.353Z",
+   "lastTask": "customer/sla_check",
+   "lastOk": true
+  },
+  {
+   "id": "customer-inquiry-classifier",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "finance",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "finance-approver",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "finance-bookkeeper",
+   "lastActivity": "2026-07-16T08:11:09.975Z",
+   "lastTask": "finance/mf_sync",
+   "lastOk": true
+  },
+  {
+   "id": "finance-classification-reviewer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "finance-mf-auth",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "finance-reporter",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "gmail-invoice-collector",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "hr-file-collect",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "hr-file-exec",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "hr-intake",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "hr-mgr",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "hr-partner-eval",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "intelligence",
+   "lastActivity": "2026-07-16T01:20:31.275Z",
+   "lastTask": "intelligence/wiki_ingest",
+   "lastOk": true
+  },
+  {
+   "id": "intelligence-market-signal",
+   "lastActivity": "2026-07-16T01:05:26.268Z",
+   "lastTask": "intelligence/market_signal_extraction",
+   "lastOk": true
+  },
+  {
+   "id": "intelligence-news-collector",
+   "lastActivity": "2026-07-16T01:05:37.473Z",
+   "lastTask": "intelligence/daily_news",
+   "lastOk": true
+  },
+  {
+   "id": "intelligence-trend-analyst",
+   "lastActivity": "2026-07-16T08:00:41.405Z",
+   "lastTask": "intelligence/ai_trends",
+   "lastOk": true
+  },
+  {
+   "id": "linkedin-analyst",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "linkedin-content-writer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "linkedin-orchestrator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "linkedin-publisher",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "linkedin-researcher",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "linkedin-reviewer",
+   "lastActivity": "2026-07-16T02:00:28.161Z",
+   "lastTask": "linkedin/review",
+   "lastOk": true
+  },
+  {
+   "id": "marketing",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "marketing-content-planner",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "marketing-performance-analyst",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "marketing-sns-scheduler",
+   "lastActivity": "2026-07-16T03:00:46.129Z",
+   "lastTask": "marketing/sns_schedule",
+   "lastOk": true
+  },
+  {
+   "id": "operations",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "operations-task-manager",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "operations-weekly-reviewer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "operations-workflow-optimizer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "orchestrator",
+   "lastActivity": "2026-07-16T08:04:04.828Z",
+   "lastTask": null,
+   "lastOk": true
+  },
+  {
+   "id": "outreach-calendar-manager",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "outreach-competitive-researcher",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "outreach-dm-reviewer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "outreach-dm-sender",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "outreach-dm-writer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "outreach-lead-manager",
+   "lastActivity": "2026-07-16T01:15:23.503Z",
+   "lastTask": "sales/lead_scan",
+   "lastOk": true
+  },
+  {
+   "id": "outreach-operations-manager",
+   "lastActivity": "2026-07-16T02:00:42.959Z",
+   "lastTask": "sales/outreach_operations_report",
+   "lastOk": true
+  },
+  {
+   "id": "sales",
+   "lastActivity": "2026-07-16T00:30:00.267Z",
+   "lastTask": "sales/sales_pod_pipeline",
+   "lastOk": true
+  },
+  {
+   "id": "sales-dm-draft-clone",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "sales-intake-clone",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "sales-qa-clone",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "sales-score-clone",
+   "lastActivity": "2026-07-15T23:45:18.230Z",
+   "lastTask": "sales/lead_scoring",
+   "lastOk": true
+  },
+  {
+   "id": "strategy",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "strategy-market",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "strategy-okr",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "strategy-scaling",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "creative",
+   "lastActivity": "2026-06-11T09:58:18.230Z",
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "creative-ads",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "creative-copy",
+   "lastActivity": "2026-06-11T09:58:14.994Z",
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "creative-design",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "instagram-carousel-generator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "instagram-concept-designer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "instagram-concept-planner",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "instagram-insight-rotator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "instagram-publisher",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "instagram-script-writer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "security",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "security-cve-monitor",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "security-incident-responder",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "security-patch-manager",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "threads-analyst",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "threads-mgr",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "threads-orchestrator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "threads-poster",
+   "lastActivity": "2026-07-16T01:30:00.129Z",
+   "lastTask": "threads/post",
+   "lastOk": true
+  },
+  {
+   "id": "threads-researcher",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "threads-reviewer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "threads-writer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "tiktok-concept-designer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "tiktok-concept-planner",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "tiktok-notify",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "tiktok-publisher",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "tiktok-script-generator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "tiktok-video-generator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "twitter-analyst",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "twitter-content-writer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "twitter-orchestrator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "twitter-publisher",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "twitter-researcher",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "twitter-reviewer",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "caseloop-manager",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "delivery-operator",
+   "lastActivity": "2026-07-16T08:00:00.381Z",
+   "lastTask": "delivery/finalize",
+   "lastOk": true
+  },
+  {
+   "id": "translate-operator",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "publishing-editor",
+   "lastActivity": "2026-07-16T07:15:00.136Z",
+   "lastTask": "publishing/publish",
+   "lastOk": true
+  },
+  {
+   "id": "publishing-promoter",
+   "lastActivity": null,
+   "lastTask": null,
+   "lastOk": null
+  },
+  {
+   "id": "publishing-analyst",
+   "lastActivity": "2026-07-15T13:22:29.799Z",
+   "lastTask": "publishing/kpi",
+   "lastOk": true
+  },
+  {
+   "id": "hr-agent-evaluator",
+   "lastActivity": "2026-07-15T13:45:31.285Z",
+   "lastTask": "hr/agent-evaluation",
+   "lastOk": true
+  },
+  {
+   "id": "approval-concierge",
+   "lastActivity": "2026-07-16T02:45:02.798Z",
+   "lastTask": "strategy/approval-triage",
+   "lastOk": true
+  },
+  {
+   "id": "company-doctor",
+   "lastActivity": "2026-07-16T02:45:02.649Z",
+   "lastTask": "ops/health-check",
+   "lastOk": true
+  }
+ ]
+}

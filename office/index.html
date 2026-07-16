@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GX Cafe AIオフィス — 稼働フロアマップ</title>
+<style>
+  :root {
+    --bg: #F3F5F2; --panel: #FFFFFF; --panel-edge: #DDE4DD;
+    --ink: #1E2621; --ink-dim: #66716A; --ink-faint: #98A29B;
+    --accent: #2E7D5B; --accent-soft: #E3EFE8;
+    --ok: #2E9E6B; --ok-glow: rgba(46,158,107,.28);
+    --warn: #C98A2B; --fail: #C0453B;
+    --chip-idle: #F0F2EF; --chip-dorm: #ECEEEB;
+    --floor-line: rgba(46,125,91,.05);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #101613; --panel: #18211C; --panel-edge: #26332B;
+      --ink: #E4EAE5; --ink-dim: #93A099; --ink-faint: #5E6B64;
+      --accent: #4CAF82; --accent-soft: #1D2E25;
+      --ok: #46C288; --ok-glow: rgba(70,194,136,.22);
+      --warn: #D9A34C; --fail: #E06A5F;
+      --chip-idle: #1C2620; --chip-dorm: #151D18;
+      --floor-line: rgba(76,175,130,.06);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F3F5F2; --panel: #FFFFFF; --panel-edge: #DDE4DD;
+    --ink: #1E2621; --ink-dim: #66716A; --ink-faint: #98A29B;
+    --accent: #2E7D5B; --accent-soft: #E3EFE8;
+    --ok: #2E9E6B; --ok-glow: rgba(46,158,107,.28);
+    --warn: #C98A2B; --fail: #C0453B;
+    --chip-idle: #F0F2EF; --chip-dorm: #ECEEEB;
+    --floor-line: rgba(46,125,91,.05);
+  }
+  :root[data-theme="dark"] {
+    --bg: #101613; --panel: #18211C; --panel-edge: #26332B;
+    --ink: #E4EAE5; --ink-dim: #93A099; --ink-faint: #5E6B64;
+    --accent: #4CAF82; --accent-soft: #1D2E25;
+    --ok: #46C288; --ok-glow: rgba(70,194,136,.22);
+    --warn: #D9A34C; --fail: #E06A5F;
+    --chip-idle: #1C2620; --chip-dorm: #151D18;
+    --floor-line: rgba(76,175,130,.06);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg);
+    background-image: linear-gradient(var(--floor-line) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--floor-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
+    padding: 20px clamp(12px, 3vw, 36px) 48px;
+    font-size: 14px; line-height: 1.55;
+  }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 6px; }
+  h1 { font-size: 21px; font-weight: 700; letter-spacing: .02em; }
+  h1 .sub { color: var(--accent); }
+  .asof { color: var(--ink-dim); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 6px; }
+  .stat {
+    background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px;
+    padding: 10px 16px 8px; min-width: 118px;
+  }
+  .stat .num { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stat .lbl { font-size: 11px; color: var(--ink-dim); letter-spacing: .06em; }
+  .stat.hot .num { color: var(--ok); }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--ink-dim); font-size: 12px; margin: 10px 0 20px; }
+  .legend .dot { margin-right: 5px; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: 1px; }
+  .dot.on { background: var(--ok); box-shadow: 0 0 0 4px var(--ok-glow); animation: pulse 2.4s ease-in-out infinite; }
+  .dot.week { background: var(--warn); }
+  .dot.idle { background: transparent; border: 1.5px solid var(--ink-faint); }
+  .dot.dorm { background: var(--ink-faint); opacity: .45; }
+  @keyframes pulse { 50% { box-shadow: 0 0 0 7px transparent; } }
+  @media (prefers-reduced-motion: reduce) { .dot.on { animation: none; } }
+
+  .floor { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
+  .room {
+    background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 8px;
+    padding: 0 12px 12px; position: relative;
+  }
+  .room.dormwing { background: var(--chip-dorm); border-style: dashed; }
+  .plate {
+    display: inline-flex; align-items: baseline; gap: 8px;
+    background: var(--accent-soft); color: var(--ink);
+    border: 1px solid var(--panel-edge); border-top: none; border-radius: 0 0 6px 6px;
+    padding: 4px 12px 5px; margin-left: 4px; font-size: 13px; font-weight: 700;
+  }
+  .plate .cnt { font-weight: 400; font-size: 11px; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+  .plate .cnt b { color: var(--ok); font-weight: 700; }
+  .desks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .desk {
+    flex: 1 1 150px; max-width: 100%;
+    background: var(--chip-idle); border: 1px solid var(--panel-edge); border-radius: 6px;
+    padding: 7px 10px 8px; min-width: 0;
+  }
+  .desk.on { background: var(--panel); border-color: var(--ok); }
+  .desk.dorm { opacity: .55; }
+  .desk .who { display: flex; align-items: center; gap: 7px; font-weight: 600; font-size: 13px; }
+  .desk .who span.nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .desk .id, .desk .task {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 10.5px; color: var(--ink-faint);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .desk .task { color: var(--ink-dim); margin-top: 2px; }
+  .desk .task .t { color: var(--ink-faint); }
+  .desk .task .ng { color: var(--fail); font-weight: 700; }
+  footer { margin-top: 26px; color: var(--ink-faint); font-size: 11.5px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>GX Cafe <span class="sub">AIオフィス</span> — 稼働フロアマップ</h1>
+  <span class="asof" id="asof">読み込み中…</span>
+</header>
+<div class="stats" id="stats"></div>
+<div class="legend">
+  <span><span class="dot on"></span>勤務中（24時間以内に実働）</span>
+  <span><span class="dot week"></span>今週稼働（7日以内）</span>
+  <span><span class="dot idle"></span>待機（配線済み・仕事待ち）</span>
+  <span><span class="dot dorm"></span>チャネル待ち（投稿先なし）</span>
+</div>
+<div class="floor" id="floor"></div>
+<footer>
+  データ: agent-census.json（毎朝の全数調査＋実行のたびの活動記録から機械生成・5分ごと自動更新）。
+  「勤務中」は data/agent-run-logs の実測のみ＝見せかけの点灯はありません。
+</footer>
+<script>
+const INLINE_DATA = null; // アーティファクト版はここに census JSON を焼き込む
+
+// 表示名（.claude/agents/ の定義名に準拠。未登録idはそのまま表示）
+const NAMES = {
+  'orchestrator':'統括オーケストレーター','approval-concierge':'承認コンシェルジュ','company-doctor':'産業医',
+  'strategy':'経営戦略部長','strategy-okr':'OKR管理','strategy-market':'市場戦略','strategy-scaling':'スケール戦略',
+  'hr-mgr':'人事部長','hr-agent-evaluator':'人事評価担当','hr-intake':'採用受付','hr-partner-eval':'パートナー評価','hr-file-collect':'人事ファイル収集','hr-file-exec':'人事ファイル実行',
+  'finance':'経理・財務部長','finance-bookkeeper':'記帳担当','finance-reporter':'財務レポート','finance-approver':'経理承認補佐','finance-classification-reviewer':'仕訳レビュー','finance-mf-auth':'MF認証係','gmail-invoice-collector':'請求書収集',
+  'sales':'営業部長','sales-intake-clone':'リード取込','sales-score-clone':'リードスコアリング','sales-qa-clone':'営業QA','sales-dm-draft-clone':'DM下書き',
+  'outreach-lead-manager':'リード管理','outreach-dm-writer':'DMライター','outreach-dm-reviewer':'DMレビュアー','outreach-dm-sender':'DM送信係','outreach-operations-manager':'営業オペ管理','outreach-calendar-manager':'営業カレンダー','outreach-competitive-researcher':'競合リサーチ',
+  'linkedin-orchestrator':'LinkedIn統括','linkedin-researcher':'決裁者リサーチ','linkedin-analyst':'LinkedIn分析','linkedin-content-writer':'LinkedInライター','linkedin-reviewer':'LinkedInレビュアー','linkedin-publisher':'LinkedIn投稿係',
+  'intelligence':'情報収集部長','intelligence-news-collector':'ニュース収集','intelligence-trend-analyst':'トレンド分析','intelligence-market-signal':'市場シグナル',
+  'analytics':'データ分析部長','analytics-kpi-collector':'KPI収集','analytics-report-generator':'レポート生成','analytics-dashboard-provider':'ダッシュボード管理',
+  'marketing':'マーケ部長','marketing-sns-scheduler':'SNSスケジューラ','marketing-content-planner':'コンテンツ企画','marketing-performance-analyst':'効果測定',
+  'publishing-editor':'編集長（Ghost記事）','publishing-promoter':'告知担当','publishing-analyst':'発信アナリスト',
+  'creative':'クリエイティブ部長','creative-copy':'コピーライター','creative-design':'デザイナー','creative-ads':'広告制作',
+  'threads-mgr':'Threads部長','threads-writer':'Threadsライター','threads-poster':'Threads投稿係','threads-reviewer':'Threadsレビュアー','threads-researcher':'Threadsリサーチ','threads-analyst':'Threads分析','threads-orchestrator':'Threads統括',
+  'caseloop-manager':'案件ループ管理者','delivery-operator':'納品オペレーター','translate-operator':'翻訳オペレーター',
+  'customer':'CS部長','customer-escalation-manager':'エスカレーション管理','customer-auto-responder':'自動応答','customer-inquiry-classifier':'問合せ分類',
+  'operations':'業務管理部長','operations-task-manager':'タスク管理','operations-weekly-reviewer':'週次レビュー','operations-workflow-optimizer':'ワークフロー改善',
+  'security':'セキュリティ部長','security-cve-monitor':'CVE監視','security-patch-manager':'パッチ管理','security-incident-responder':'インシデント対応',
+};
+
+const ROOMS = [
+  { name: '経営企画室', icon: '🏛', match: (id) => ['orchestrator','approval-concierge'].includes(id) || id.startsWith('strategy') },
+  { name: '人事部', icon: '🧑‍💼', match: (id) => id.startsWith('hr-') },
+  { name: '経理・財務部', icon: '💴', match: (id) => id.startsWith('finance') || id === 'gmail-invoice-collector' },
+  { name: '営業部（リード・DM）', icon: '📨', match: (id) => id.startsWith('sales') || id.startsWith('outreach') },
+  { name: 'LinkedIn導線', icon: '🤝', match: (id) => id.startsWith('linkedin') },
+  { name: '受託・納品部', icon: '📦', match: (id) => ['caseloop-manager','delivery-operator','translate-operator'].includes(id) },
+  { name: '情報収集部', icon: '🔭', match: (id) => id.startsWith('intelligence') },
+  { name: '分析部', icon: '📈', match: (id) => id.startsWith('analytics') },
+  { name: 'マーケティング部', icon: '📣', match: (id) => id.startsWith('marketing') },
+  { name: 'コンテンツ制作部', icon: '✍️', match: (id) => id.startsWith('publishing') || id.startsWith('creative') || id.startsWith('threads') },
+  { name: 'カスタマー対応部', icon: '🎧', match: (id) => id.startsWith('customer') },
+  { name: '総務・情シス部', icon: '🛡', match: (id) => id.startsWith('operations') || id.startsWith('security') || id === 'company-doctor' },
+  { name: 'SNS別館', icon: '💤', dorm: true, match: (id) => /^(instagram|tiktok|twitter)/.test(id) },
+  { name: 'その他', icon: '🗂', match: () => true },
+];
+
+const DAY = 86400000;
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ago = (iso) => {
+  const ms = Date.now() - Date.parse(iso);
+  if (!Number.isFinite(ms)) return '';
+  if (ms < 3600000) return Math.max(1, Math.round(ms / 60000)) + '分前';
+  if (ms < DAY) return Math.round(ms / 3600000) + '時間前';
+  return Math.round(ms / DAY) + '日前';
+};
+
+function stateOf(a, dormRoom) {
+  const t = Date.parse(a.lastActivity || '');
+  if (Number.isFinite(t) && Date.now() - t <= DAY) return 'on';
+  if (Number.isFinite(t) && Date.now() - t <= 7 * DAY) return 'week';
+  return dormRoom ? 'dorm' : 'idle';
+}
+
+function render(d) {
+  const agents = [...(d.openclawAgents || [])];
+  const seen = new Set();
+  const roomData = ROOMS.map((r) => {
+    const members = agents.filter((a) => !seen.has(a.id) && r.match(a.id));
+    members.forEach((a) => seen.add(a.id));
+    members.forEach((a) => { a._state = stateOf(a, r.dorm); });
+    const order = { on: 0, week: 1, idle: 2, dorm: 3 };
+    members.sort((x, y) => order[x._state] - order[y._state] || x.id.localeCompare(y.id));
+    return { ...r, members };
+  }).filter((r) => r.members.length);
+
+  const on = agents.filter((a) => a._state === 'on').length;
+  const week = agents.filter((a) => a._state === 'on' || a._state === 'week').length;
+  document.getElementById('stats').innerHTML = [
+    ['勤務中（24h）', on, 'hot'],
+    ['今週稼働（7日）', week, ''],
+    ['稼働率（7日）', Math.round(100 * week / Math.max(1, agents.length)) + '%', ''],
+    ['総席数', agents.length, ''],
+  ].map(([l, n, c]) => `<div class="stat ${c}"><div class="num">${n}</div><div class="lbl">${l}</div></div>`).join('');
+
+  const cycle = INLINE_DATA ? '（スナップショット）'
+    : (location.hostname.endsWith('github.io') ? '（毎日12:00 JST更新）' : '（5分ごと更新）');
+  document.getElementById('asof').textContent =
+    '調査時刻: ' + new Date(d.generatedAt).toLocaleString('ja-JP') + cycle;
+
+  document.getElementById('floor').innerHTML = roomData.map((r) => `
+    <section class="room${r.dorm ? ' dormwing' : ''}">
+      <span class="plate">${r.icon} ${esc(r.name)}
+        <span class="cnt"><b>${r.members.filter((m) => m._state === 'on').length}</b>/${r.members.length}名 勤務中</span>
+      </span>
+      <div class="desks">${r.members.map((a) => `
+        <div class="desk ${a._state}">
+          <div class="who"><span class="dot ${a._state}"></span><span class="nm">${esc(NAMES[a.id] || a.id)}</span></div>
+          <div class="id">${esc(a.id)}</div>
+          <div class="task">${a.lastTask
+            ? `${a.lastOk === false ? '<span class="ng">✗</span> ' : ''}${esc(a.lastTask)} <span class="t">· ${ago(a.lastActivity)}</span>`
+            : (a.lastActivity ? `<span class="t">最終活動 ${ago(a.lastActivity)}</span>` : `<span class="t">${a._state === 'dorm' ? '投稿チャネル開設待ち' : '仕事の割当を待機中'}</span>`)}</div>
+        </div>`).join('')}</div>
+    </section>`).join('');
+}
+
+async function load() {
+  if (INLINE_DATA) { render(INLINE_DATA); return; }
+  const res = await fetch('./agent-census.json?t=' + Date.now());
+  render(await res.json());
+}
+load().catch((e) => { document.getElementById('asof').textContent = '読み込み失敗: ' + e.message; });
+if (!INLINE_DATA) setInterval(() => load().catch(() => {}), 5 * 60 * 1000);
+</script>
+</body>
+</html>
