@@ -13,6 +13,7 @@
     --warn: #C98A2B; --fail: #C0453B;
     --chip-idle: #F0F2EF; --chip-dorm: #ECEEEB;
     --floor-line: rgba(46,125,91,.05);
+    --overlay: rgba(20,28,23,.45);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -23,6 +24,7 @@
       --warn: #D9A34C; --fail: #E06A5F;
       --chip-idle: #1C2620; --chip-dorm: #151D18;
       --floor-line: rgba(76,175,130,.06);
+      --overlay: rgba(0,0,0,.55);
     }
   }
   :root[data-theme="light"] {
@@ -33,6 +35,7 @@
     --warn: #C98A2B; --fail: #C0453B;
     --chip-idle: #F0F2EF; --chip-dorm: #ECEEEB;
     --floor-line: rgba(46,125,91,.05);
+    --overlay: rgba(20,28,23,.45);
   }
   :root[data-theme="dark"] {
     --bg: #101613; --panel: #18211C; --panel-edge: #26332B;
@@ -42,6 +45,7 @@
     --warn: #D9A34C; --fail: #E06A5F;
     --chip-idle: #1C2620; --chip-dorm: #151D18;
     --floor-line: rgba(76,175,130,.06);
+    --overlay: rgba(0,0,0,.55);
   }
   * { box-sizing: border-box; margin: 0; }
   body {
@@ -57,18 +61,18 @@
   header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; margin-bottom: 6px; }
   h1 { font-size: 21px; font-weight: 700; letter-spacing: .02em; }
   h1 .sub { color: var(--accent); }
+  h2 { font-size: 16px; margin: 34px 0 10px; }
   .asof { color: var(--ink-dim); font-size: 12px; font-variant-numeric: tabular-nums; }
+  .quick { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; margin: 6px 0 2px; }
+  .quick a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
   .stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 6px; }
-  .stat {
-    background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px;
-    padding: 10px 16px 8px; min-width: 118px;
-  }
+  .stat { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 6px; padding: 10px 16px 8px; min-width: 118px; }
   .stat .num { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.1; }
   .stat .lbl { font-size: 11px; color: var(--ink-dim); letter-spacing: .06em; }
   .stat.hot .num { color: var(--ok); }
   .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--ink-dim); font-size: 12px; margin: 10px 0 20px; }
   .legend .dot { margin-right: 5px; }
-  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: 1px; }
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: 1px; flex: none; }
   .dot.on { background: var(--ok); box-shadow: 0 0 0 4px var(--ok-glow); animation: pulse 2.4s ease-in-out infinite; }
   .dot.week { background: var(--warn); }
   .dot.idle { background: transparent; border: 1.5px solid var(--ink-faint); }
@@ -77,37 +81,70 @@
   @media (prefers-reduced-motion: reduce) { .dot.on { animation: none; } }
 
   .floor { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 14px; }
-  .room {
-    background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 8px;
-    padding: 0 12px 12px; position: relative;
-  }
+  .room { background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 8px; padding: 0 12px 12px; }
   .room.dormwing { background: var(--chip-dorm); border-style: dashed; }
   .plate {
     display: inline-flex; align-items: baseline; gap: 8px;
-    background: var(--accent-soft); color: var(--ink);
-    border: 1px solid var(--panel-edge); border-top: none; border-radius: 0 0 6px 6px;
-    padding: 4px 12px 5px; margin-left: 4px; font-size: 13px; font-weight: 700;
+    background: var(--accent-soft); border: 1px solid var(--panel-edge); border-top: none;
+    border-radius: 0 0 6px 6px; padding: 4px 12px 5px; margin-left: 4px; font-size: 13px; font-weight: 700;
   }
   .plate .cnt { font-weight: 400; font-size: 11px; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
-  .plate .cnt b { color: var(--ok); font-weight: 700; }
+  .plate .cnt b { color: var(--ok); }
   .desks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .desk {
-    flex: 1 1 150px; max-width: 100%;
+    flex: 1 1 150px; max-width: 100%; min-width: 0;
     background: var(--chip-idle); border: 1px solid var(--panel-edge); border-radius: 6px;
-    padding: 7px 10px 8px; min-width: 0;
+    padding: 7px 10px 8px; cursor: pointer;
   }
+  .desk:hover { border-color: var(--accent); }
+  .desk:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
   .desk.on { background: var(--panel); border-color: var(--ok); }
   .desk.dorm { opacity: .55; }
   .desk .who { display: flex; align-items: center; gap: 7px; font-weight: 600; font-size: 13px; }
   .desk .who span.nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .desk .id, .desk .task {
-    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
-    font-size: 10.5px; color: var(--ink-faint);
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 10.5px;
+    color: var(--ink-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
   .desk .task { color: var(--ink-dim); margin-top: 2px; }
   .desk .task .t { color: var(--ink-faint); }
-  .desk .task .ng { color: var(--fail); font-weight: 700; }
+  .ng { color: var(--fail); font-weight: 700; }
+
+  /* 詳細ドロワー */
+  #overlay { position: fixed; inset: 0; background: var(--overlay); display: none; z-index: 40; }
+  #drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(430px, 94vw); z-index: 50;
+    background: var(--panel); border-left: 1px solid var(--panel-edge);
+    box-shadow: -8px 0 28px rgba(0,0,0,.18); padding: 18px 20px 28px; overflow-y: auto;
+    transform: translateX(102%); transition: transform .22s ease;
+  }
+  @media (prefers-reduced-motion: reduce) { #drawer { transition: none; } }
+  #drawer.open { transform: none; }
+  #drawer h3 { display: flex; align-items: center; gap: 8px; font-size: 16px; }
+  #drawer .id { font-family: ui-monospace, Consolas, monospace; font-size: 11px; color: var(--ink-faint); margin: 2px 0 14px; }
+  #drawer .sec { font-size: 11px; letter-spacing: .08em; color: var(--ink-dim); margin: 16px 0 6px; font-weight: 700; }
+  #drawer ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  #drawer li.h {
+    display: flex; gap: 8px; align-items: baseline; font-size: 12px;
+    background: var(--chip-idle); border: 1px solid var(--panel-edge); border-radius: 5px; padding: 6px 9px;
+  }
+  #drawer li.h code { font-family: ui-monospace, Consolas, monospace; font-size: 11px; overflow-wrap: anywhere; }
+  #drawer li.h .t { margin-left: auto; color: var(--ink-faint); font-size: 10.5px; white-space: nowrap; }
+  #drawer li.o a { color: var(--accent); font-size: 13px; }
+  #drawer li.o { padding: 2px 0; }
+  #drawer .empty { color: var(--ink-faint); font-size: 12px; }
+  #closeBtn {
+    position: absolute; top: 12px; right: 14px; background: none; border: 1px solid var(--panel-edge);
+    color: var(--ink-dim); border-radius: 5px; padding: 2px 10px; cursor: pointer; font-size: 13px;
+  }
+
+  /* 成果物の地図 */
+  .surfaces { overflow-x: auto; background: var(--panel); border: 1px solid var(--panel-edge); border-radius: 8px; }
+  .surfaces table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 12.5px; }
+  .surfaces th, .surfaces td { text-align: left; padding: 8px 12px; border-top: 1px solid var(--panel-edge); vertical-align: top; }
+  .surfaces thead th { border-top: none; background: var(--accent-soft); font-size: 11px; letter-spacing: .06em; }
+  .surfaces a { color: var(--accent); }
+  .surfaces .when { color: var(--ink-dim); white-space: nowrap; font-variant-numeric: tabular-nums; }
   footer { margin-top: 26px; color: var(--ink-faint); font-size: 11.5px; }
 </style>
 </head>
@@ -116,22 +153,58 @@
   <h1>GX Cafe <span class="sub">AIオフィス</span> — 稼働フロアマップ</h1>
   <span class="asof" id="asof">読み込み中…</span>
 </header>
+<div class="quick local-only" id="quick">
+  <a href="./approval-center.html">✅ 承認センター</a>
+  <a href="./agent-board.html">📋 稼働ボード</a>
+  <a href="./report.html?r=nippou-latest">📝 AI社員日報</a>
+  <a href="./report.html?r=weekly-scorecard-latest">📊 週次スコアカード</a>
+  <a href="./report.html?r=revenue-experiments-latest">💹 収益実験</a>
+  <a href="https://gxcafe.github.io/tech-blog/" target="_blank" rel="noopener">📰 公開ブログ</a>
+</div>
 <div class="stats" id="stats"></div>
 <div class="legend">
   <span><span class="dot on"></span>勤務中（24時間以内に実働）</span>
   <span><span class="dot week"></span>今週稼働（7日以内）</span>
   <span><span class="dot idle"></span>待機（配線済み・仕事待ち）</span>
   <span><span class="dot dorm"></span>チャネル待ち（投稿先なし）</span>
+  <span>💡 デスクをクリックすると、直近の仕事と成果物の場所が見られます</span>
 </div>
 <div class="floor" id="floor"></div>
+
+<h2>📦 成果物と共有の地図 — 「どこに上がって、どう届くか」</h2>
+<div class="surfaces">
+<table>
+<thead><tr><th>成果物</th><th>上がる場所</th><th class="when">更新タイミング</th><th>届き方</th></tr></thead>
+<tbody>
+<tr><td>人間の承認が要る全成果物（DM・LinkedIn接続/会話・記事公開・note/告知・納品物・領収書仕訳・リサーチキット）</td><td><a class="local-only" href="./approval-center.html">承認センター</a><span class="pages-note">承認センター（ローカル）</span></td><td class="when">生成のつど</td><td>毎朝メール先頭のリンク＋各デスクの詳細から</td></tr>
+<tr><td>今日の優先アクション（承認コンシェルジュの順位付け）</td><td>毎朝の稼働ダイジェストメール 先頭</td><td class="when">毎日 11:45</td><td>sales@gxcafe.co.jp 宛メール</td></tr>
+<tr><td>公開記事（技術ブログ）</td><td><a href="https://gxcafe.github.io/tech-blog/" target="_blank" rel="noopener">gxcafe.github.io/tech-blog</a></td><td class="when">毎日 12:00</td><td>公開URL（このマップも同サイト /office/）</td></tr>
+<tr><td>AI社員 日報（出勤・実行・問題点）</td><td><a class="local-only" href="./report.html?r=nippou-latest">reports/nippou-latest.md</a><span class="pages-note">ローカル版のみ</span></td><td class="when">毎日 11:55</td><td>このページ上部リンク＋人事評価の一次資料</td></tr>
+<tr><td>週次スコアカード（KGI・ファネル・稼働率・淘汰提案）</td><td><a class="local-only" href="./report.html?r=weekly-scorecard-latest">reports/weekly-scorecard-latest.md</a><span class="pages-note">ローカル版のみ</span></td><td class="when">毎週月曜 13:00</td><td>このページ上部リンク</td></tr>
+<tr><td>今週の収益実験 3案</td><td><a class="local-only" href="./report.html?r=revenue-experiments-latest">reports/revenue-experiments-latest.md</a><span class="pages-note">ローカル版のみ</span></td><td class="when">毎週月曜 13:30</td><td>毎朝メールに案内行</td></tr>
+<tr><td>月次人事評価（マニュアル改訂の提案）</td><td><a class="local-only" href="./report.html?r=agent-evaluation-latest">reports/agent-evaluation-latest.md</a><span class="pages-note">ローカル版のみ</span></td><td class="when">毎月1日 11:50</td><td>採用する提案をKengoが指示→適用</td></tr>
+<tr><td>経理仕訳・領収書</td><td>MoneyForward ＋ <a class="local-only" href="./accounting-dashboard.html">経理ダッシュボード</a><span class="pages-note">経理ダッシュボード（ローカル）</span></td><td class="when">毎日 8:00台（キャッチアップ有）</td><td>仕訳承認は承認センター経由でMFへ自動登録</td></tr>
+<tr><td>Threads投稿</td><td>Threads実アカウント</td><td class="when">毎日 10:30に1本</td><td>下書き33件のキューから自動投稿</td></tr>
+<tr><td>note週報・転載記事</td><td>note（掲載後）／それまでは承認センター📓</td><td class="when">毎週金曜 11:20 生成</td><td>承認→Kengoがコピペ掲載→販売はnoteが自律処理</td></tr>
+</tbody>
+</table>
+</div>
+
 <footer>
-  データ: agent-census.json（毎朝の全数調査＋実行のたびの活動記録から機械生成・5分ごと自動更新）。
-  「勤務中」は data/agent-run-logs の実測のみ＝見せかけの点灯はありません。
+  データ: agent-census.json（毎朝の全数調査）＋agent-run-logs（実行のたびに記録）。「勤務中」は実測のみ＝見せかけの点灯はありません。
+  デスク詳細と各レポートはローカル版（http://localhost:3000/dashboards/office.html）で全て閲覧できます。
 </footer>
+
+<div id="overlay"></div>
+<aside id="drawer" aria-label="AI社員の詳細">
+  <button id="closeBtn">閉じる ✕</button>
+  <div id="drawerBody"></div>
+</aside>
+
 <script>
 const INLINE_DATA = null; // アーティファクト版はここに census JSON を焼き込む
+const INLINE_DETAIL = null; // アーティファクト版はここに office-detail JSON を焼き込む
 
-// 表示名（.claude/agents/ の定義名に準拠。未登録idはそのまま表示）
 const NAMES = {
   'orchestrator':'統括オーケストレーター','approval-concierge':'承認コンシェルジュ','company-doctor':'産業医',
   'strategy':'経営戦略部長','strategy-okr':'OKR管理','strategy-market':'市場戦略','strategy-scaling':'スケール戦略',
@@ -170,6 +243,7 @@ const ROOMS = [
 ];
 
 const DAY = 86400000;
+const IS_PAGES = location.hostname.endsWith('github.io');
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const ago = (iso) => {
   const ms = Date.now() - Date.parse(iso);
@@ -179,6 +253,8 @@ const ago = (iso) => {
   return Math.round(ms / DAY) + '日前';
 };
 
+let DETAIL = INLINE_DETAIL;
+
 function stateOf(a, dormRoom) {
   const t = Date.parse(a.lastActivity || '');
   if (Number.isFinite(t) && Date.now() - t <= DAY) return 'on';
@@ -186,31 +262,55 @@ function stateOf(a, dormRoom) {
   return dormRoom ? 'dorm' : 'idle';
 }
 
+function openDrawer(a) {
+  const det = DETAIL && DETAIL.agents && DETAIL.agents[a.id];
+  const hist = det && det.history && det.history.length
+    ? '<ul>' + det.history.map((h) => `<li class="h">${h.ok ? '✓' : '<span class="ng">✗</span>'}<code>${esc(h.task)}</code><span class="t">${ago(h.at)}</span></li>`).join('') + '</ul>'
+    : `<div class="empty">${det ? '直近の実行記録はありません（' + (a._state === 'dorm' ? '投稿チャネル開設待ち' : '仕事の割当・業務イベント待ち') + '）' : 'タスク履歴はローカル版（localhost:3000）で見られます'}</div>`;
+  const outs = det && det.outputs && det.outputs.length
+    ? '<ul>' + det.outputs.map((o) => `<li class="o">${o.href ? `<a href="${esc(o.href)}" ${/^https?:/.test(o.href) ? 'target="_blank" rel="noopener"' : ''}>📦 ${esc(o.label)}</a>` : '📦 ' + esc(o.label)}</li>`).join('') + '</ul>'
+    : '<div class="empty">成果物の場所はローカル版で確認できます</div>';
+  document.getElementById('drawerBody').innerHTML = `
+    <h3><span class="dot ${a._state}"></span>${esc(NAMES[a.id] || a.id)}</h3>
+    <div class="id">${esc(a.id)}${a.lastActivity ? ' ｜ 最終活動 ' + ago(a.lastActivity) : ''}</div>
+    <div class="sec">直近の仕事（最大8件）</div>${hist}
+    <div class="sec">成果物はここに上がる</div>${outs}`;
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById('drawer').classList.add('open');
+}
+function closeDrawer() {
+  document.getElementById('overlay').style.display = 'none';
+  document.getElementById('drawer').classList.remove('open');
+}
+document.getElementById('overlay').addEventListener('click', closeDrawer);
+document.getElementById('closeBtn').addEventListener('click', closeDrawer);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+
+let AGENTS = [];
 function render(d) {
-  const agents = [...(d.openclawAgents || [])];
+  AGENTS = [...(d.openclawAgents || [])];
   const seen = new Set();
   const roomData = ROOMS.map((r) => {
-    const members = agents.filter((a) => !seen.has(a.id) && r.match(a.id));
-    members.forEach((a) => seen.add(a.id));
-    members.forEach((a) => { a._state = stateOf(a, r.dorm); });
+    const members = AGENTS.filter((a) => !seen.has(a.id) && r.match(a.id));
+    members.forEach((a) => { seen.add(a.id); a._state = stateOf(a, r.dorm); });
     const order = { on: 0, week: 1, idle: 2, dorm: 3 };
     members.sort((x, y) => order[x._state] - order[y._state] || x.id.localeCompare(y.id));
     return { ...r, members };
   }).filter((r) => r.members.length);
 
-  const on = agents.filter((a) => a._state === 'on').length;
-  const week = agents.filter((a) => a._state === 'on' || a._state === 'week').length;
+  const on = AGENTS.filter((a) => a._state === 'on').length;
+  const week = AGENTS.filter((a) => a._state === 'on' || a._state === 'week').length;
+  const core = AGENTS.filter((a) => !/^(instagram|tiktok|twitter)/.test(a.id));
+  const coreWeek = core.filter((a) => a._state === 'on' || a._state === 'week').length;
   document.getElementById('stats').innerHTML = [
     ['勤務中（24h）', on, 'hot'],
     ['今週稼働（7日）', week, ''],
-    ['稼働率（7日）', Math.round(100 * week / Math.max(1, agents.length)) + '%', ''],
-    ['総席数', agents.length, ''],
+    ['コア稼働率（SNS別館除く・目標70%）', Math.round(100 * coreWeek / Math.max(1, core.length)) + '%', ''],
+    ['総席数', AGENTS.length, ''],
   ].map(([l, n, c]) => `<div class="stat ${c}"><div class="num">${n}</div><div class="lbl">${l}</div></div>`).join('');
 
-  const cycle = INLINE_DATA ? '（スナップショット）'
-    : (location.hostname.endsWith('github.io') ? '（毎日12:00 JST更新）' : '（5分ごと更新）');
-  document.getElementById('asof').textContent =
-    '調査時刻: ' + new Date(d.generatedAt).toLocaleString('ja-JP') + cycle;
+  const cycle = INLINE_DATA ? '（スナップショット）' : (IS_PAGES ? '（毎日12:00 JST更新）' : '（5分ごと更新）');
+  document.getElementById('asof').textContent = '調査時刻: ' + new Date(d.generatedAt).toLocaleString('ja-JP') + cycle;
 
   document.getElementById('floor').innerHTML = roomData.map((r) => `
     <section class="room${r.dorm ? ' dormwing' : ''}">
@@ -218,7 +318,7 @@ function render(d) {
         <span class="cnt"><b>${r.members.filter((m) => m._state === 'on').length}</b>/${r.members.length}名 勤務中</span>
       </span>
       <div class="desks">${r.members.map((a) => `
-        <div class="desk ${a._state}">
+        <div class="desk ${a._state}" data-id="${esc(a.id)}" tabindex="0" role="button" aria-label="${esc(NAMES[a.id] || a.id)}の詳細">
           <div class="who"><span class="dot ${a._state}"></span><span class="nm">${esc(NAMES[a.id] || a.id)}</span></div>
           <div class="id">${esc(a.id)}</div>
           <div class="task">${a.lastTask
@@ -226,12 +326,27 @@ function render(d) {
             : (a.lastActivity ? `<span class="t">最終活動 ${ago(a.lastActivity)}</span>` : `<span class="t">${a._state === 'dorm' ? '投稿チャネル開設待ち' : '仕事の割当を待機中'}</span>`)}</div>
         </div>`).join('')}</div>
     </section>`).join('');
+
+  document.querySelectorAll('.desk').forEach((el) => {
+    const open = () => { const a = AGENTS.find((x) => x.id === el.dataset.id); if (a) openDrawer(a); };
+    el.addEventListener('click', open);
+    el.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  });
 }
 
 async function load() {
   if (INLINE_DATA) { render(INLINE_DATA); return; }
   const res = await fetch('./agent-census.json?t=' + Date.now());
   render(await res.json());
+  if (!DETAIL) {
+    try { DETAIL = await (await fetch('./office-detail.json?t=' + Date.now())).json(); } catch { DETAIL = null; }
+  }
+}
+if (IS_PAGES) {
+  // 公開版: ローカル専用リンクは注記表示に切替
+  document.querySelectorAll('.local-only').forEach((el) => { el.style.display = 'none'; });
+} else {
+  document.querySelectorAll('.pages-note').forEach((el) => { el.style.display = 'none'; });
 }
 load().catch((e) => { document.getElementById('asof').textContent = '読み込み失敗: ' + e.message; });
 if (!INLINE_DATA) setInterval(() => load().catch(() => {}), 5 * 60 * 1000);

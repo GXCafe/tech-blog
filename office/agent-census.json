@@ -1,8 +1,8 @@
 {
- "generatedAt": "2026-07-16T08:13:10.242Z",
+ "generatedAt": "2026-07-16T23:36:46.809Z",
  "summary": {
-  "openclawAgentsTotal": 97,
-  "openclawAgentsActive7d": 22
+  "openclawAgentsTotal": 99,
+  "openclawAgentsActive7d": 25
  },
  "openclawAgents": [
   {
@@ -19,8 +19,8 @@
   },
   {
    "id": "analytics-kpi-collector",
-   "lastActivity": "2026-07-16T01:10:14.279Z",
-   "lastTask": "analytics/kpi_morning",
+   "lastActivity": "2026-07-16T12:05:25.479Z",
+   "lastTask": "analytics/kpi_collect",
    "lastOk": true
   },
   {
@@ -43,7 +43,7 @@
   },
   {
    "id": "customer-escalation-manager",
-   "lastActivity": "2026-07-16T07:15:00.353Z",
+   "lastActivity": "2026-07-16T14:15:00.750Z",
    "lastTask": "customer/sla_check",
    "lastOk": true
   },
@@ -67,7 +67,7 @@
   },
   {
    "id": "finance-bookkeeper",
-   "lastActivity": "2026-07-16T08:11:09.975Z",
+   "lastActivity": "2026-07-16T12:54:53.844Z",
    "lastTask": "finance/mf_sync",
    "lastOk": true
   },
@@ -235,7 +235,7 @@
   },
   {
    "id": "orchestrator",
-   "lastActivity": "2026-07-16T08:04:04.828Z",
+   "lastActivity": "2026-07-16T12:57:56.949Z",
    "lastTask": null,
    "lastOk": true
   },
@@ -319,9 +319,9 @@
   },
   {
    "id": "strategy-market",
-   "lastActivity": null,
-   "lastTask": null,
-   "lastOk": null
+   "lastActivity": "2026-07-16T08:54:12.726Z",
+   "lastTask": "strategy/revenue-experiments",
+   "lastOk": true
   },
   {
    "id": "strategy-okr",
@@ -541,7 +541,7 @@
   },
   {
    "id": "delivery-operator",
-   "lastActivity": "2026-07-16T08:00:00.381Z",
+   "lastActivity": "2026-07-16T23:33:51.377Z",
    "lastTask": "delivery/finalize",
    "lastOk": true
   },
@@ -553,7 +553,7 @@
   },
   {
    "id": "publishing-editor",
-   "lastActivity": "2026-07-16T07:15:00.136Z",
+   "lastActivity": "2026-07-16T23:33:50.665Z",
    "lastTask": "publishing/publish",
    "lastOk": true
   },
@@ -565,7 +565,7 @@
   },
   {
    "id": "publishing-analyst",
-   "lastActivity": "2026-07-15T13:22:29.799Z",
+   "lastActivity": "2026-07-16T12:10:00.932Z",
    "lastTask": "publishing/kpi",
    "lastOk": true
   },
@@ -583,8 +583,20 @@
   },
   {
    "id": "company-doctor",
-   "lastActivity": "2026-07-16T02:45:02.649Z",
+   "lastActivity": "2026-07-16T11:00:02.914Z",
    "lastTask": "ops/health-check",
+   "lastOk": true
+  },
+  {
+   "id": "note-editor",
+   "lastActivity": "2026-07-16T11:52:04.643Z",
+   "lastTask": "publishing/note-inbox-linkedin",
+   "lastOk": true
+  },
+  {
+   "id": "ebay-researcher",
+   "lastActivity": "2026-07-16T12:51:08.158Z",
+   "lastTask": "ebay/research",
    "lastOk": true
   }
  ]
