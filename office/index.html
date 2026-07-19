@@ -235,7 +235,7 @@ const ROOMS = [
   { name: '情報収集部', icon: '🔭', match: (id) => id.startsWith('intelligence') },
   { name: '分析部', icon: '📈', match: (id) => id.startsWith('analytics') },
   { name: 'マーケティング部', icon: '📣', match: (id) => id.startsWith('marketing') },
-  { name: 'コンテンツ制作部', icon: '✍️', match: (id) => id.startsWith('publishing') || id.startsWith('creative') || id.startsWith('threads') },
+  { name: 'コンテンツ制作部', icon: '✍️', match: (id) => id.startsWith('publishing') || id.startsWith('creative') || id.startsWith('threads') || id.startsWith('pinterest') || id === 'note-editor' },
   { name: 'カスタマー対応部', icon: '🎧', match: (id) => id.startsWith('customer') },
   { name: '総務・情シス部', icon: '🛡', match: (id) => id.startsWith('operations') || id.startsWith('security') || id === 'company-doctor' },
   { name: 'SNS別館', icon: '💤', dorm: true, match: (id) => /^(instagram|tiktok|twitter)/.test(id) },
