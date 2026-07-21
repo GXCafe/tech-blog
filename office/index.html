@@ -154,6 +154,7 @@
   <span class="asof" id="asof">読み込み中…</span>
 </header>
 <div class="quick local-only" id="quick">
+  <a href="./access-map.html">🗺 アクセスマップ</a>
   <a href="./approval-center.html">✅ 承認センター</a>
   <a href="./agent-board.html">📋 稼働ボード</a>
   <a href="./report.html?r=nippou-latest">📝 AI社員日報</a>
@@ -220,13 +221,14 @@ const NAMES = {
   'creative':'クリエイティブ部長','creative-copy':'コピーライター','creative-design':'デザイナー','creative-ads':'広告制作',
   'threads-mgr':'Threads部長','threads-writer':'Threadsライター','threads-poster':'Threads投稿係','threads-reviewer':'Threadsレビュアー','threads-researcher':'Threadsリサーチ','threads-analyst':'Threads分析','threads-orchestrator':'Threads統括',
   'caseloop-manager':'案件ループ管理者','delivery-operator':'納品オペレーター','translate-operator':'翻訳オペレーター',
+  'secretary':'秘書','note-editor':'note編集係','pinterest-copywriter':'Pinterestコピーライター','hr-agent-evaluator':'人事評価担当','approval-concierge':'承認コンシェルジュ','company-doctor':'産業医','strategy-market':'市場戦略',
   'customer':'CS部長','customer-escalation-manager':'エスカレーション管理','customer-auto-responder':'自動応答','customer-inquiry-classifier':'問合せ分類',
   'operations':'業務管理部長','operations-task-manager':'タスク管理','operations-weekly-reviewer':'週次レビュー','operations-workflow-optimizer':'ワークフロー改善',
   'security':'セキュリティ部長','security-cve-monitor':'CVE監視','security-patch-manager':'パッチ管理','security-incident-responder':'インシデント対応',
 };
 
 const ROOMS = [
-  { name: '経営企画室', icon: '🏛', match: (id) => ['orchestrator','approval-concierge'].includes(id) || id.startsWith('strategy') },
+  { name: '経営企画室', icon: '🏛', match: (id) => ['orchestrator','approval-concierge','secretary'].includes(id) || id.startsWith('strategy') },
   { name: '人事部', icon: '🧑‍💼', match: (id) => id.startsWith('hr-') },
   { name: '経理・財務部', icon: '💴', match: (id) => id.startsWith('finance') || id === 'gmail-invoice-collector' },
   { name: '営業部（リード・DM）', icon: '📨', match: (id) => id.startsWith('sales') || id.startsWith('outreach') },
