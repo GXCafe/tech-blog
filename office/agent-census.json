@@ -1,26 +1,26 @@
 {
- "generatedAt": "2026-08-03T22:05:06.599Z",
+ "generatedAt": "2026-08-04T22:05:10.129Z",
  "summary": {
-  "openclawAgentsTotal": 87,
-  "openclawAgentsActive7d": 83
+  "openclawAgentsTotal": 90,
+  "openclawAgentsActive7d": 87
  },
  "openclawAgents": [
   {
    "id": "analytics-dashboard-provider",
-   "lastActivity": "2026-07-27T00:45:49.754Z",
-   "lastTask": "analytics/dashboard_update",
-   "lastOk": true
+   "lastActivity": "2026-08-04T03:37:54.071Z",
+   "lastTask": null,
+   "lastOk": false
   },
   {
    "id": "analytics-kpi-collector",
-   "lastActivity": "2026-08-03T12:09:18.574Z",
+   "lastActivity": "2026-08-04T12:06:58.057Z",
    "lastTask": "analytics/kpi_collect",
    "lastOk": true
   },
   {
    "id": "analytics-report-generator",
-   "lastActivity": "2026-07-27T00:31:07.500Z",
-   "lastTask": "analytics/weekly_report_generation",
+   "lastActivity": "2026-08-04T06:54:09.098Z",
+   "lastTask": null,
    "lastOk": true
   },
   {
@@ -31,7 +31,7 @@
   },
   {
    "id": "customer-escalation-manager",
-   "lastActivity": "2026-08-03T21:15:00.339Z",
+   "lastActivity": "2026-08-04T21:15:01.106Z",
    "lastTask": "customer/sla_check",
    "lastOk": true
   },
@@ -55,7 +55,7 @@
   },
   {
    "id": "finance-bookkeeper",
-   "lastActivity": "2026-08-02T23:01:58.108Z",
+   "lastActivity": "2026-08-03T23:02:29.091Z",
    "lastTask": "finance/mf_sync",
    "lastOk": true
   },
@@ -109,31 +109,31 @@
   },
   {
    "id": "intelligence",
-   "lastActivity": "2026-08-03T19:18:41.138Z",
+   "lastActivity": "2026-08-04T21:59:43.568Z",
    "lastTask": null,
    "lastOk": true
   },
   {
    "id": "intelligence-market-signal",
-   "lastActivity": "2026-07-29T01:05:55.131Z",
-   "lastTask": "intelligence/market_signal_extraction",
+   "lastActivity": "2026-08-04T21:58:30.253Z",
+   "lastTask": null,
    "lastOk": true
   },
   {
    "id": "intelligence-news-collector",
-   "lastActivity": "2026-07-29T01:06:42.092Z",
+   "lastActivity": "2026-08-04T01:09:21.069Z",
    "lastTask": "intelligence/daily_news",
    "lastOk": true
   },
   {
    "id": "intelligence-trend-analyst",
-   "lastActivity": "2026-08-03T08:02:54.832Z",
+   "lastActivity": "2026-08-04T08:00:51.732Z",
    "lastTask": "intelligence/ai_trends",
    "lastOk": true
   },
   {
    "id": "linkedin-analyst",
-   "lastActivity": "2026-07-28T02:05:15.494Z",
+   "lastActivity": "2026-08-04T02:08:39.430Z",
    "lastTask": "linkedin/analysis",
    "lastOk": true
   },
@@ -181,7 +181,7 @@
   },
   {
    "id": "marketing-sns-scheduler",
-   "lastActivity": "2026-07-30T03:02:45.137Z",
+   "lastActivity": "2026-08-04T03:05:32.587Z",
    "lastTask": "marketing/sns_schedule",
    "lastOk": true
   },
@@ -199,13 +199,13 @@
   },
   {
    "id": "operations-workflow-optimizer",
-   "lastActivity": "2026-08-02T23:21:37.091Z",
+   "lastActivity": "2026-08-03T23:23:13.194Z",
    "lastTask": "operations/workflow_optimization",
    "lastOk": true
   },
   {
    "id": "orchestrator",
-   "lastActivity": "2026-08-03T12:05:43.667Z",
+   "lastActivity": "2026-08-04T08:01:28.775Z",
    "lastTask": null,
    "lastOk": true
   },
@@ -235,43 +235,43 @@
   },
   {
    "id": "outreach-lead-manager",
-   "lastActivity": "2026-08-03T11:29:00.070Z",
-   "lastTask": null,
+   "lastActivity": "2026-08-04T01:28:52.295Z",
+   "lastTask": "sales/lead_scan",
    "lastOk": true
   },
   {
    "id": "outreach-operations-manager",
-   "lastActivity": "2026-07-30T02:07:32.426Z",
+   "lastActivity": "2026-08-04T02:12:30.969Z",
    "lastTask": "sales/outreach_operations_report",
    "lastOk": true
   },
   {
    "id": "sales",
-   "lastActivity": "2026-07-30T00:30:00.054Z",
+   "lastActivity": "2026-08-04T00:30:00.308Z",
    "lastTask": "sales/sales_pod_pipeline",
    "lastOk": true
   },
   {
    "id": "sales-intake-clone",
-   "lastActivity": "2026-08-02T23:32:38.848Z",
+   "lastActivity": "2026-08-03T23:31:20.361Z",
    "lastTask": "sales/daily_lead_import",
    "lastOk": true
   },
   {
    "id": "sales-score-clone",
-   "lastActivity": "2026-08-02T23:47:39.849Z",
+   "lastActivity": "2026-08-03T23:47:30.434Z",
    "lastTask": "sales/lead_scoring",
    "lastOk": true
   },
   {
    "id": "strategy",
-   "lastActivity": "2026-08-03T22:03:04.294Z",
+   "lastActivity": "2026-08-04T22:01:47.372Z",
    "lastTask": null,
    "lastOk": true
   },
   {
    "id": "strategy-market",
-   "lastActivity": "2026-08-03T19:15:53.468Z",
+   "lastActivity": "2026-08-04T19:18:27.492Z",
    "lastTask": null,
    "lastOk": true
   },
@@ -283,7 +283,7 @@
   },
   {
    "id": "strategy-scaling",
-   "lastActivity": "2026-08-03T19:12:24.161Z",
+   "lastActivity": "2026-08-04T16:24:35.850Z",
    "lastTask": null,
    "lastOk": true
   },
@@ -325,7 +325,7 @@
   },
   {
    "id": "delivery-operator",
-   "lastActivity": "2026-08-03T13:30:00.410Z",
+   "lastActivity": "2026-08-04T13:30:00.862Z",
    "lastTask": "delivery/finalize",
    "lastOk": true
   },
@@ -337,7 +337,7 @@
   },
   {
    "id": "publishing-editor",
-   "lastActivity": "2026-08-03T21:15:00.541Z",
+   "lastActivity": "2026-08-04T21:15:01.401Z",
    "lastTask": "publishing/publish",
    "lastOk": true
   },
@@ -349,25 +349,25 @@
   },
   {
    "id": "publishing-analyst",
-   "lastActivity": "2026-08-03T12:10:05.300Z",
+   "lastActivity": "2026-08-04T12:10:04.489Z",
    "lastTask": "publishing/kpi",
    "lastOk": true
   },
   {
    "id": "hr-agent-evaluator",
-   "lastActivity": "2026-08-03T08:08:35.744Z",
-   "lastTask": null,
+   "lastActivity": "2026-08-04T15:41:59.316Z",
+   "lastTask": "hr/agent-evaluation",
    "lastOk": true
   },
   {
    "id": "approval-concierge",
-   "lastActivity": "2026-08-03T18:55:12.873Z",
+   "lastActivity": "2026-08-04T02:45:03.353Z",
    "lastTask": "strategy/approval-triage",
    "lastOk": true
   },
   {
    "id": "company-doctor",
-   "lastActivity": "2026-08-03T18:55:12.714Z",
+   "lastActivity": "2026-08-04T11:00:08.091Z",
    "lastTask": "ops/health-check",
    "lastOk": false
   },
@@ -385,13 +385,19 @@
   },
   {
    "id": "secretary",
-   "lastActivity": "2026-08-03T07:43:32.594Z",
-   "lastTask": "secretary/consult-case",
+   "lastActivity": "2026-08-04T15:36:33.234Z",
+   "lastTask": "secretary/consult-classify",
+   "lastOk": true
+  },
+  {
+   "id": "creative-reviewer",
+   "lastActivity": "2026-08-04T21:58:08.436Z",
+   "lastTask": null,
    "lastOk": true
   },
   {
    "id": "ebay-export",
-   "lastActivity": "2026-08-03T14:30:00.587Z",
+   "lastActivity": "2026-08-04T14:30:00.406Z",
    "lastTask": "ebay-export/nightly_research",
    "lastOk": true
   },
@@ -414,6 +420,12 @@
    "lastOk": true
   },
   {
+   "id": "operations-drop-intake",
+   "lastActivity": "2026-08-04T21:55:17.727Z",
+   "lastTask": "operations/drop_intake",
+   "lastOk": true
+  },
+  {
    "id": "publishing-aeo-optimizer",
    "lastActivity": "2026-07-29T02:31:29.766Z",
    "lastTask": "publishing/aeo-optimize",
@@ -421,25 +433,25 @@
   },
   {
    "id": "sales-first-hearing",
-   "lastActivity": "2026-08-03T09:15:01.346Z",
+   "lastActivity": "2026-08-04T09:15:01.380Z",
    "lastTask": "sales/first-hearing",
    "lastOk": true
   },
   {
    "id": "sales-followup-runner",
-   "lastActivity": "2026-08-03T01:30:01.998Z",
+   "lastActivity": "2026-08-04T01:35:06.590Z",
    "lastTask": "sales/outreach-followup",
    "lastOk": true
   },
   {
    "id": "sales-meeting-prep",
-   "lastActivity": "2026-08-03T01:30:01.114Z",
+   "lastActivity": "2026-08-04T01:30:00.595Z",
    "lastTask": "sales/meeting-brief",
    "lastOk": true
   },
   {
    "id": "sales-meeting-scribe",
-   "lastActivity": "2026-08-03T21:40:01.186Z",
+   "lastActivity": "2026-08-04T21:40:01.974Z",
    "lastTask": "sales/meeting-minutes",
    "lastOk": true
   },
@@ -451,8 +463,14 @@
   },
   {
    "id": "sales-thirst-scout",
-   "lastActivity": "2026-08-03T21:05:37.610Z",
+   "lastActivity": "2026-08-04T21:57:59.464Z",
    "lastTask": "sales/thirst-scan",
+   "lastOk": false
+  },
+  {
+   "id": "secretary-meeting-scribe",
+   "lastActivity": "2026-08-04T15:11:09.685Z",
+   "lastTask": null,
    "lastOk": true
   },
   {
